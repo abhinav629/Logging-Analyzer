@@ -1,0 +1,14 @@
+.success_tick{
+  color:green;
+}
+.error_cross{
+  color: red;
+}
+
+.insertUpdate{
+  color: blue;
+}
+
+.request{
+  color: goldenrod;
+}

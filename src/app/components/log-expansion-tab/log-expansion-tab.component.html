@@ -1,0 +1,22 @@
+<div style="display: flex; flex-direction: row">
+  <div [ngClass]="iconClass">
+    <app-my-icon
+      status="{{ logDetails?.status }}"
+      actionType="{{ logDetails.actionType }}"
+    ></app-my-icon>
+  </div>
+  <div style="width: 75%; margin-left: 1%">
+    <app-log-details
+      flightId="{{ logDetails?.flightNumber }}"
+      type="{{ iconClass }}"
+      sessionId="{{ logDetails?.sessionTimestamp }}"
+      actionType="{{ logDetails?.actionType }}"
+      metaData="{{ logDetails | json }}"
+      timestamp="{{ logDetails?.actionTimestamp }}"
+    ></app-log-details>
+  </div>
+  <div style="width: 20%; margin-top: 2%">
+    <mat-panel-description>{{ time }}</mat-panel-description>
+  </div>
+</div>
+<mat-divider></mat-divider>

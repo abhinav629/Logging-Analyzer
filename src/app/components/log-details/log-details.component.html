@@ -1,0 +1,64 @@
+<div>
+  <div>
+    <div *ngIf="type === 'expansionTab'">
+      <p *ngIf="flightId !== '0'; else noFlight" class="pStyle">
+        <b>Flight: {{ flightId }} | {{ date | date: "dd MMM" }} | 01</b>
+      </p>
+    </div>
+
+    <div
+      *ngIf="type === 'flightTab'"
+      style="display: flex; flex-direction: row; flex-wrap: wrap"
+    >
+      <div>
+        <p *ngIf="flightId !== '0'; else noFlight" class="pStyle">
+          <b>Flight: {{ flightId }} | {{ date | date: "dd MMM" }} | 01</b>
+        </p>
+      </div>
+      <div style="display: flex; flex-direction: row; margin-left: 10%">
+        <img
+          style="width: 20px; height: 20px; margin-top: 12px"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF73EM8hFL5GAYCyBIsaw1WUQRiCerzBndvw&usqp=CAU"
+        />
+        &nbsp;&nbsp;
+        <p *ngIf="type === 'flightTab'" class="pStyle">
+          <b>{{ metaData?.userId }}</b>
+        </p>
+      </div>
+    </div>
+
+    <ng-template #noFlight>
+      <p class="pStyle">
+        {{ metaData?.actionDescription }}
+      </p>
+    </ng-template>
+  </div>
+  <div>
+    <div
+      *ngIf="flightId !== '0' && actionType !== 'LOAD_FLIGHT'"
+      style="font-family: 'Courier New', Courier, monospace; font-size: medium"
+    >
+      <p>
+        <!-- <b>Action: </b> -->
+        <b
+          >{{ metaData?.fieldReference }}
+          <small>({{ actionType.toLowerCase() }})</small>:&nbsp;</b
+        ><mark
+          style="padding: 4px; border-radius: 4px; background-color: #ff726f"
+          ><del
+            ><b>{{ metaData?.previousValue }}</b></del
+          ></mark
+        ><b> => </b>
+        <mark
+          style="padding: 4px; border-radius: 4px; background-color: #32cd32"
+          ><ins
+            ><b>{{ metaData?.currentValue }}</b></ins
+          ></mark
+        >
+      </p>
+    </div>
+    <p *ngIf="actionType === 'LOAD_FLIGHT'" class="pStyle">
+      <b>Action</b>: {{ metaData?.actionDescription }}
+    </p>
+  </div>
+</div>

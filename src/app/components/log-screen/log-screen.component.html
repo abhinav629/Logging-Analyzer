@@ -1,0 +1,119 @@
+<br />
+<div class="toggler">
+  <mat-slide-toggle color="primary" checked="true" [(ngModel)]="isFlightView">
+    <p style="font-size: large; font-family: 'Courier New', Courier, monospace">
+      <b>Flight View</b>
+    </p>
+  </mat-slide-toggle>
+  <br />
+  <br />
+</div>
+
+<div class="mainDiv" *ngIf="isFlightView === false; else flightView">
+  <div>
+    <form [formGroup]="newUserForm">
+      <mat-form-field appearance="fill">
+        <mat-label>User ID</mat-label>
+        <input
+          required
+          matInput
+          type="number"
+          formControlName="userId"
+          placeholder="User ID"
+        />
+      </mat-form-field>
+    </form>
+    <button
+      mat-raised-button
+      style="margin-left: 20px"
+      color="primary"
+      (click)="findSessionsForUser()"
+    >
+      Find Sessions
+    </button>
+  </div>
+  <br />
+  <br />
+  <mat-accordion *ngIf="analysisLogs">
+    <mat-expansion-panel
+      class="sessionExpansion"
+      *ngFor="let log of analysisLogs | keyvalue"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title class="innerSessionTitle">
+          <b
+            >{{ dateService.getDate(log.key, true, true, false) }}
+            {{ dateService.getTime(log.key) }}</b
+          >
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ log.value.length }} Logs
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <app-log-expansion-tab
+        iconClass="expansionTab"
+        *ngFor="let analysis of log.value"
+        analysisLog="{{ analysis | json }}"
+      ></app-log-expansion-tab>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<ng-template #flightView>
+  <div class="mainDiv">
+    <div class="example-container">
+      <form [formGroup]="newFlightForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Flight ID</mat-label>
+          <input
+            required
+            matInput
+            type="number"
+            formControlName="flightNumber"
+            placeholder="Flight Number"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Flight Date</mat-label>
+          <input
+            required
+            matInput
+            type="date"
+            formControlName="flightDate"
+            placeholder="Flight Date"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Leg Number</mat-label>
+          <input
+            required
+            matInput
+            type="number"
+            formControlName="legNumber"
+            placeholder="Leg Number"
+          />
+        </mat-form-field>
+      </form>
+      <button
+        mat-raised-button
+        style="margin-left: 15%"
+        color="primary"
+        (click)="findFlights()"
+      >
+        Find Flights
+      </button>
+    </div>
+    <br />
+    <br />
+    <div class="flightExpansion">
+      <app-log-expansion-tab
+        iconClass="flightTab"
+        *ngFor="let currentAnalysis of analysisLogsBasedOnFlightFilters"
+        analysisLog="{{ currentAnalysis | json}}"
+      ></app-log-expansion-tab>
+    </div>
+  </div>
+</ng-template>

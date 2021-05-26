@@ -1,0 +1,52 @@
+.mainDiv{
+  margin-left: 2%;
+  padding: 5px;
+}
+
+.sessionExpansion{
+  margin-bottom: 1px;
+  padding: 2px;
+  width: 550px;
+}
+
+.flightExpansion{
+  margin-bottom: 1px;
+  padding: 2px;
+  width: 550px;
+}
+
+.innerSessionTitle{
+  font-weight: 550;
+  font-family:'Courier New', Courier, monospace
+}
+
+.toggler{
+  margin-left: 15%;
+  padding: 10px;
+}
+
+.centerize{
+  margin: 0;
+  left: 50%;
+  transform: translate(-50%)
+}
+
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.example-container .mat-form-field {
+  width: 220px;
+}
+
+.example-container form {
+  margin-bottom: 20px;
+}
+
+.example-container form > * {
+  margin: 5px 0;
+}
+
+.example-container .mat-radio-button {
+  margin: 0 12px;
+}

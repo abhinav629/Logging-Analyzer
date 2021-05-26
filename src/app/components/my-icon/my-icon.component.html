@@ -1,0 +1,23 @@
+<mat-icon class="error_cross" *ngIf="status === 'error'; else otherTypes"
+  >cancel</mat-icon
+>
+<ng-template #otherTypes>
+  <mat-icon class="success_tick" *ngIf="status === 'success'"
+    >check_circle</mat-icon
+  >
+  <mat-icon class="success_tick" *ngIf="actionType === actionTypes.load"
+    >sync</mat-icon
+  >
+  <mat-icon class="insertUpdate" *ngIf="actionType === actionTypes.insert"
+    >insert_comment</mat-icon
+  >
+  <mat-icon class="insertUpdate" *ngIf="actionType === actionTypes.update"
+    >keyboard</mat-icon
+  >
+  <mat-icon class="success_tick" *ngIf="actionType === actionTypes.loadFlight"
+    >flight</mat-icon
+  >
+  <mat-icon class="request" *ngIf="actionType === actionTypes.request"
+    >watch_later</mat-icon
+  >
+</ng-template>
